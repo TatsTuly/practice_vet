@@ -4,45 +4,25 @@ class Schedule {
   final Doctor doctor;
   final String status;
   final DateTime time;
+  final String? petName;
+  final String? petType;
+  final String? reason;
 
   Schedule({
     required this.doctor,
     required this.status,
     required this.time,
+    this.petName,
+    this.petType,
+    this.reason,
   });
 }
 
-// Sample list of schedules
-List<Schedule> schedules = [
-  Schedule(
-    doctor: doctors[4],
-    status: 'Confirmed',
-    time: DateTime.parse('2024-11-03'),
-  ),
-  Schedule(
-    doctor: doctors[0],
-    status: 'Confirmed',
-    time: DateTime.parse('2024-11-04'),
-  ),
-  Schedule(
-    doctor: doctors[1],
-    status: 'Confirmed',
-    time: DateTime.parse('2024-11-05 09:30'),
-  ),
-  Schedule(
-    doctor: doctors[2],
-    status: 'Confirmed',
-    time: DateTime.parse('2024-11-01 06:00'),
-  ),
-  Schedule(
-    doctor: doctors[3],
-    status: 'Confirmed',
-    time: DateTime.parse('2024-11-06 15:45'),
-  ),
-];
+// Initialize with empty list instead of dummy data
+List<Schedule> schedules = [];
 
 // Tabs for UI
-List<String> tabs = ['Upcoming', 'Completed', 'Canceled'];
+List<String> tabs = ['Upcoming', 'Completed', 'Cancelled'];
 
 // Get current date without time component
 DateTime now = DateTime.now();

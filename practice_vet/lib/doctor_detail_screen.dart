@@ -81,7 +81,7 @@ class DoctorDetailScreen extends StatelessWidget {
                 child: ListView(
                   children: [
                     const Text(
-                      "About Doctor",
+                      "About Veterinarian",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -99,39 +99,34 @@ class DoctorDetailScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 25),
-                    Row(
-                      children: [
-                        const Text(
-                          "Rating:",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Icon(Icons.star, color: Colors.amber[800], size: 20),
-                        const SizedBox(width: 5),
-                        Text(
-                          rate(doctor).toStringAsFixed(1),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                        const SizedBox(width: 5),
-                        Text(
-                          "(${doctor.reviews.length} reviews)",
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 30),
                     const Text(
-                      "Location",
+                      "Treats Animals",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: doctor.treatsAnimals.map((animal) => 
+                        Chip(
+                          backgroundColor: Color(doctor.color).withOpacity(0.7),
+                          label: Text(
+                            animal,
+                            style: const TextStyle(
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        )
+                      ).toList(),
+                    ),
+                    const SizedBox(height: 25),
+                    const Text(
+                      "Clinic Location",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -154,7 +149,7 @@ class DoctorDetailScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
-                              "Lotus Medical Center",
+                              "Pet Care Center",
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -199,7 +194,7 @@ class DoctorDetailScreen extends StatelessWidget {
                   style: TextStyle(color: Colors.grey),
                 ),
                 Text(
-                  "\Tk.${doctor.price}",
+                  "৳${doctor.price}",
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -244,9 +239,4 @@ class DoctorDetailScreen extends StatelessWidget {
     );
   }
 
-  double rate(Doctor doctor) {
-    if (doctor.reviews.isEmpty) return 0;
-    double total = doctor.reviews.fold(0, (sum, review) => sum + review.rate);
-    return total / doctor.reviews.length;
-  }
 }

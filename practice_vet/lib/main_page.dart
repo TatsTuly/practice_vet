@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:practice_vet/home_screen.dart';
 import 'package:practice_vet/schedule_screen.dart';
 
+// Global key to access MainPage state from anywhere
+final GlobalKey<_MainPageState> mainPageKey = GlobalKey<_MainPageState>();
+
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  const MainPage({super.key}) : super(key: mainPageKey);
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -16,6 +19,15 @@ class _MainPageState extends State<MainPage> {
     const VetHomeScreen(),
     const ScheduleScreen(),
   ];
+  
+  // Method to change tabs programmatically
+  void changeTab(int index) {
+    if (index >= 0 && index < _pages.length) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
