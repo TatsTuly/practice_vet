@@ -18,14 +18,15 @@ class AppColors {
 }
 
 class VeterinaryScreen extends StatefulWidget {
-  const VeterinaryScreen({Key? key}) : super(key: vetScreenKey);
+  // Remove const and fix the key issue
+  VeterinaryScreen({Key? key}) : super(key: key ?? vetScreenKey);
 
   @override
   State<VeterinaryScreen> createState() => _VeterinaryScreenState();
 }
 
 class VeterinaryApp extends StatelessWidget {
-  const VeterinaryApp({Key? key}) : super(key: key);
+  const VeterinaryApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,7 @@ class VeterinaryApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         fontFamily: 'Roboto',
       ),
-      home: const VeterinaryScreen(),
+      home: VeterinaryScreen(),
     );
   }
 }
